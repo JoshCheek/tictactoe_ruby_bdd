@@ -3,7 +3,7 @@ require 'tic_tac_toe/game_factory'
 module TicTacToe
   class Console
 
-    def initialize(input = STDIN, output=STDOUT)
+    def initialize(input=$stdin, output=$stdout)
       @input = input
       @output = output
     end
@@ -16,14 +16,14 @@ module TicTacToe
       @output.puts(build_board(board))
     end
 
-    def game_type
+    def game_type(game_types)
       @output.puts("Please enter a game type from the list.")
-      @output.puts(game_type_list)
+      @output.puts(game_type_list game_types)
       type = @input.gets
       if type =~ /\d/
         type.to_i
       else
-        game_type
+        game_type game_types
       end
     end
 
@@ -53,9 +53,10 @@ module TicTacToe
       result
     end
 
-    def game_type_list
+
+    def game_type_list(types)
       result = ""
-      TicTacToe::GameFactory.new.types.each_with_index.map do |value, index|
+      types.each_with_index.map do |value, index|
         result << "#{index + 1} - #{game_type_values(value)}\n"
       end
       result
@@ -66,8 +67,7 @@ module TicTacToe
     end
 
     def player_type(type)
-      return "Human" if type == :human
-      return "Computer" if type == :computer
+      type.to_s.capitalize
     end
   end
 end

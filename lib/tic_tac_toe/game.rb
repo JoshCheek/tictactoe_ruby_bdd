@@ -6,8 +6,8 @@ module TicTacToe
     attr_reader :board, :current_player
 
     def initialize(players, board = TicTacToe::Board.new)
-      @board = board
-      @players = players
+      @board          = board
+      @players        = players
       @current_player = players[0]
     end
 
@@ -32,8 +32,8 @@ module TicTacToe
       @rules ||= TicTacToe::Rules.new(board)
     end
 
-    def player(value)
-      @players.detect {|p| p.value == value}
+    def player(marker)
+      @players.detect { |p| p.value == marker }
     end
 
     def change_player

@@ -3,6 +3,7 @@ module TicTacToe
   end
 
   class Board
+    # side_length
     attr_reader :squares, :size, :unique_marked_values
 
     def initialize(size = 3)
@@ -16,12 +17,12 @@ module TicTacToe
       @moves_history = []
     end
 
-    def mark(move, value)
+    def mark(move, marker)
       if move_available?(move)
-        squares[move] = value
-        @unique_marked_values << value if !@unique_marked_values.include?(value)
+        squares[move] = marker
+        @unique_marked_values << marker if !@unique_marked_values.include?(marker)
       else
-        raise MoveNotAvailableError.new("#{value} is trying to move at #{move}. available_moves: #{available_moves.inspect}")
+        raise MoveNotAvailableError.new("#{marker} is trying to move at #{move}. available_moves: #{available_moves.inspect}")
       end
     end
 
@@ -54,9 +55,7 @@ module TicTacToe
     end
 
     def diagonals
-      left_diagonal = diagonal_from_top_left
-      right_diagonal = diagonal_from_top_right
-      [left_diagonal, right_diagonal]
+      [diagonal_from_top_left, diagonal_from_top_right]
     end
 
     def available_moves

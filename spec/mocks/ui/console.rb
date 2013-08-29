@@ -7,7 +7,7 @@ class MockConsole
   define :display_welcome_message
   define(:display_board) {|board|}
   define(:display) {|message|}
-  define :game_type
+  define(:game_type) { |types| }
   define(:display_winner){|winner|}
   define :display_tied_game
   define :display_square_not_available

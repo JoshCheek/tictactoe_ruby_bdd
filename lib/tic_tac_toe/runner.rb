@@ -5,7 +5,8 @@ require 'tic_tac_toe/board'
 module TicTacToe
   class Runner
 
-    def initialize(ui = TicTacToe::Console.new, game_factory = TicTacToe::GameFactory.new)
+    def initialize(ui = TicTacToe::Console.new,
+                   game_factory = TicTacToe::GameFactory.new)
       @ui = ui
       @game_factory = game_factory
     end
@@ -14,7 +15,7 @@ module TicTacToe
       ui.display_welcome_message
       @game = create_game
       play until game.over?
-      ui.display_board(board)
+      ui.display_board(game.board)
       display_result
     end
 
@@ -22,7 +23,7 @@ module TicTacToe
     attr_reader :ui, :game, :game_factory
 
     def create_game
-      game_type = ui.game_type
+      game_type = ui.game_type game_factory.types
       begin
         game_factory.create(game_type)
       rescue ArgumentError
@@ -31,7 +32,7 @@ module TicTacToe
     end
 
     def play
-      ui.display_board(board)
+      ui.display_board(game.board)
       ui.display_player_turn(game.current_player)
       make_player_move
     end
@@ -51,10 +52,6 @@ module TicTacToe
       else
         ui.display_tied_game
       end
-    end
-
-    def board
-      game.board
     end
   end
 end

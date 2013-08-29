@@ -20,13 +20,13 @@ module TicTacToe
     end
 
     private
-    def human(value)
-      TicTacToe::Player.new("User", value, TicTacToe::Strategy::ConsoleUser.new)
+    def human(marker)
+      TicTacToe::Player.new("User", marker, TicTacToe::Strategy::ConsoleUser.new)
     end
 
-    def computer(value)
-      ai = TicTacToe::Strategy::Minimax.new(value)
-      TicTacToe::Player.new("Computer", value, ai)
+    def computer(marker)
+      ai = TicTacToe::Strategy::Minimax.new(marker)
+      TicTacToe::Player.new("Computer", marker, ai)
     end
   end
 end

@@ -9,4 +9,12 @@ Gem::Specification.new do |s|
   s.files       = `git ls-files`.split("\n")
   s.homepage    = 'http://rubygems.org/gems/tic_tac_toe_nhu'
   s.executables << 'tic_tac_toe'
+
+  s.add_dependency 'json', '~> 1.7.7'
+
+  s.add_development_dependency 'rspec',     '~> 2.14.0'
+  s.add_development_dependency 'simplecov', '~> 0.7.0'
+  s.add_development_dependency 'cucumber',  '~> 1.3.0'
+  s.add_development_dependency 'rake',      '~> 10.1.0'
+  s.add_development_dependency 'surrogate', '~> 0.7.0'
 end

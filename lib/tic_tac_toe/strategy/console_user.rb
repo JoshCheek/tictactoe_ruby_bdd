@@ -19,7 +19,7 @@ module TicTacToe
       end
 
       private
-      NUMBER = /\d/
+      NUMBER = /\A\d\Z/
 
     end
   end

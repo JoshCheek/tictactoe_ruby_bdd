@@ -19,13 +19,13 @@ module TicTacToe
     end
 
     private
-    def win?(player)
-      square_sets.any? do |squares|
-        squares.all? {|square| square == player}
+    def win?(player_marker)
+      winning_sets.any? do |markers|
+        markers.all? { |marker| marker == player_marker }
       end
     end
 
-    def square_sets
+    def winning_sets
       @board.rows + @board.columns + @board.diagonals
     end
   end

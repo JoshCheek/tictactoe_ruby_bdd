@@ -49,29 +49,31 @@ describe TicTacToe::Console do
   end
 
   context "reading user input for game type" do
+    let(:types) { TicTacToe::GameFactory.new.types }
+
     it "displays a list of game type" do
       expected_display = "1 - Human vs Human\n2 - Human vs Computer\n3 - Computer vs Human\n4 - Computer vs Computer"
       @input.string = "1"
-      @console.game_type
+      @console.game_type types
       @output.string.should match expected_display
     end
 
     it "displays a message asking user to select a game type" do
       expected_display = "Please enter a game type from the list."
       @input.string = "1"
-      @console.game_type
+      @console.game_type types
       @output.string.should match expected_display
     end
 
     it "returns user input in integer" do
       @input.string = "1"
-      @console.game_type.should == 1
+      @console.game_type(types).should == 1
     end
 
     it "asks for user input again when user enter a character" do
       expected_display = "Please enter a game type from the list."
       @input.should_receive(:gets).twice.and_return("a", "1")
-      @console.game_type
+      @console.game_type types
       @output.string.should match expected_display
     end
   end
